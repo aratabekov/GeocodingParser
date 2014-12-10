@@ -4,7 +4,7 @@ import java.util.*;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
-
+//test
 public class Geocoder {
 
 	static enum MoreIterations {
