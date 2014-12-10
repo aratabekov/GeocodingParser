@@ -1,3 +1,4 @@
+import org.apache.hadoop.io.Text;
 
 public class Address {
 	
@@ -12,6 +13,7 @@ public class Address {
 	private String 	rtohn;
 	private String	zipl;
 	private String	zipr;
+	private boolean isAddrFeat	= false;
 	
 	//specific to faces
 	private String 	tfid;
@@ -26,22 +28,31 @@ public class Address {
 		
 		// Split the line for every tab
 		String[] inputLine = addressInfo.split("\t");
-		String tlid = "";
 		
-		//We now have a TLID and either TFIDL... or fromhn...
+		//We now have a TFIDL/TFIDR or a tfid
 		try {
-			this.TLID = inputLine[0];
-			
-			//Determine whether or TFIDL or fromhn
-			
-			
+			if (inputLine.length > 2) {		// more than 3 tabs so TFIDL/TFIDR
+				this.TLID 		= inputLine[0];
+				this.TFIDL 		= inputLine[1];
+				this.TFIDR 		= inputLine[2];
+				this.fullName 	= inputLine[3];
+				this.lfromhn 	= inputLine[4];
+				this.ltohn		= inputLine[5];
+				this.rfromhn	= inputLine[6];
+				this.rtohn		= inputLine[7];
+				this.zipl		= inputLine[8];
+				this.zipr		= inputLine[9];
+				this.isAddrFeat	= true;
+				
+			} else {						// less than 3 tabs so tfid
+				this.tfid		= inputLine[0];
+				this.statefips	= inputLine[1];
+				this.cousub		= inputLine[2];
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
-		}
-		
-		
-		
+		}	
 		
 	}
 
@@ -149,6 +160,37 @@ public class Address {
 		this.cousub = cousub;
 	}
 
+	public boolean isAddrFeat() {
+		return isAddrFeat;
+	}
+
+	public Text getAddressInfo() {
+		StringBuffer s = new StringBuffer();
+		try {
+			if (isAddrFeat) {
+				s.append(this.TLID).append("\t");
+				s.append(this.TFIDL).append("\t");
+				s.append(this.TFIDR).append("\t");
+				s.append(this.fullName).append("\t");
+				s.append(this.lfromhn).append("\t");
+				s.append(this.ltohn).append("\t");
+				s.append(this.rfromhn).append("\t");
+				s.append(this.rtohn).append("\t");
+				s.append(this.zipl).append("\t");
+				s.append(this.zipr);
+			} else {
+				s.append(this.tfid).append("\t");
+				s.append(this.statefips).append("\t");
+				s.append(this.cousub);
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+		return new Text(s.toString());
+	}
+			
 	
 
 }

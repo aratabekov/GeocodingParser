@@ -12,22 +12,31 @@ public class Geocoder {
 	}
 	
 	public static class GeocoderMapper extends MapReduceBase implements 
-		Mapper<LongWritable, Text, LongWritable, Text> {
+		Mapper<Text, Text, Text, Text> {
 	
 		@Override
-		public void map(LongWritable key, Text value,
-				OutputCollector<LongWritable, Text> output, Reporter reporter) throws IOException {
+		public void map(Text key, Text value,
+				OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
+			
+			Address address = new Address(value.toString());
+			
+			if (address.isAddrFeat()) {
+				output.collect(new Text(address.getTFIDL()), address.getAddressInfo());
+				output.collect(new Text(address.getTFIDR()), address.getAddressInfo());
+			} else {
+				output.collect(new Text(address.getTfid()), address.getAddressInfo());
+			}
 			
 		}
 		
 	}
 	
 	public static class Reduce extends MapReduceBase implements
-		Reducer<LongWritable, Text, LongWritable, Text> {
+		Reducer<Text, Text, Text, Text> {
 		
 		@Override
-		public void reduce(LongWritable key, Iterator<Text> values,
-				OutputCollector<LongWritable, Text> output, Reporter reporter) throws IOException {
+		public void reduce(Text key, Iterator<Text> values,
+				OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
 			
 		}
 		
@@ -39,7 +48,7 @@ public class Geocoder {
 		conf.setJobName("Geocoder");
 		conf.setNumReduceTasks(2);
 		
-		conf.setOutputKeyClass(LongWritable.class);
+		conf.setOutputKeyClass(Text.class);
 		conf.setOutputValueClass(Text.class);
 		
 		conf.setMapperClass(GeocoderMapper.class);
