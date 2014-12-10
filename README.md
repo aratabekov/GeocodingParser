@@ -1,6 +1,22 @@
 GeocodingParser
 ===============
 
+Here is the parsing part for addrfeat:
+
+return tlid+"\t"+tfidl+"\t"+tfidr+"\t"+fullname+"\t"+lfromhn+"\t"+ltohn+"\t"
++rfromhn+"\t"+rtohn+"\t"+zipl+"\t"+zipr;
+
+Here is for faces
+
+return tfid+"\t"+statefips+"\t"+cousub;
+
+We will need to map each of them by tfids, not by TLIDs. 
+
+So if you know the addrfeat has 2 TFID fields, which are TFIDR for right side and TFIDL
+for left side. 
+In our mapping method we will want to emit 2 records, if the record we are mapping is of type addrfeat.
+
+------------OLD--------------
 The file called edges.txt contains edges table.
 Here is how to parse the record:
 That's how I implemented it's toString method, so parse it
