@@ -28,14 +28,14 @@ public class Address {
 		
 		// Split the line for every tab
 		String[] inputLine = addressInfo.split("\t");
-		String[] values=inputLine[1].split("|");
+		String[] values=inputLine[1].split("\\|");
 		
 		//We now have a TFIDL/TFIDR or a tfid
 		try {
 			if (values.length > 2) {		// more than 3 tabs so TFIDL/TFIDR
-				this.TLID 		= inputLine[0];
-				this.TFIDL 		= values[0];
-				this.TFIDR 		= values[1];
+				this.TLID 		= inputLine[0].trim();
+				this.TFIDL 		= values[0].trim();
+				this.TFIDR 		= values[1].trim();
 				this.fullName 	= values[2];
 				this.lfromhn 	= values[3];
 				this.ltohn		= values[4];
@@ -46,7 +46,7 @@ public class Address {
 				this.isAddrFeat	= true;
 				
 			} else {						// less than 3 tabs so tfid
-				this.tfid		= inputLine[0];
+				this.tfid		= inputLine[0].trim();
 				this.statefips	= values[0];
 				this.cousub		= values[1];
 			}
@@ -170,18 +170,18 @@ public class Address {
 		try {
 			if (isAddrFeat) {
 				s.append(this.TLID).append("\t");
-				s.append(this.TFIDL).append("\t");
-				s.append(this.TFIDR).append("\t");
-				s.append(this.fullName).append("\t");
-				s.append(this.lfromhn).append("\t");
-				s.append(this.ltohn).append("\t");
-				s.append(this.rfromhn).append("\t");
-				s.append(this.rtohn).append("\t");
-				s.append(this.zipl).append("\t");
+				s.append(this.TFIDL).append("|");
+				s.append(this.TFIDR).append("|");
+				s.append(this.fullName).append("|");
+				s.append(this.lfromhn).append("|");
+				s.append(this.ltohn).append("|");
+				s.append(this.rfromhn).append("|");
+				s.append(this.rtohn).append("|");
+				s.append(this.zipl).append("|");
 				s.append(this.zipr);
 			} else {
 				s.append(this.tfid).append("\t");
-				s.append(this.statefips).append("\t");
+				s.append(this.statefips).append("|");
 				s.append(this.cousub);
 			}
 		} catch (NullPointerException e) {

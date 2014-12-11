@@ -50,7 +50,7 @@ public class Geocoder {
 		public void reduce(PairOfStrings key, Iterator<Text> values,
 				OutputCollector<PairOfStrings, Text> output, Reporter reporter) throws IOException {
 			
-			if (key.getRightElement() == "*") { //first time reducer is called (FACES info)
+			if (key.getRightElement().equals("*")) { //first time reducer is called (FACES info)
 				facesKey = key.getLeftElement();
 				facesInfo = values.next().toString(); // only one FACES info 
 			} else
