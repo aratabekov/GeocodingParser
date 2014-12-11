@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class Geocoder {
 				output.collect(pair, address.getAddressInfo());
 			} else {
 				FaceAttributes face=FaceAttributes.parse(info);
-				pair.set(face.getTFID(), "*"); //That way reducer will always receive info from FACES first
+				pair.set(face.getTFID() ,"*"); //That way reducer will always receive info from FACES first
 				output.collect(pair, face.getFaceInfo());
 			}
 			
@@ -117,7 +118,7 @@ public class Geocoder {
 				
 				if(facesInfo.trim().length()>0){
 					FaceAttributes face=FaceAttributes.parse(facesInfo);
-					String combinedInfo = 
+					String combinedInfo = face.getTFID()+" | "+
 							face.getStateFips() + " | " +
 									cousubCodes.get(face.getCousub().trim()) + " | " +
 									streetName + " | " + 
@@ -133,6 +134,7 @@ public class Geocoder {
 			}
 			
 		}
+		
 		 private void loadCousubCodes()
 	       {
 	    	   String strRead;
@@ -156,6 +158,7 @@ public class Geocoder {
 	    	   }
 
 	       }
+	       
 		
 	}
 	
