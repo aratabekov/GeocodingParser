@@ -1,6 +1,12 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.*;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
@@ -42,6 +48,17 @@ public class Geocoder {
 	public static class GeocoderReducer extends MapReduceBase implements
 		Reducer<PairOfStrings, Text, PairOfStrings, Text> {
 
+		
+		  private static Map<String,String> cousubCodes= new HashMap<String,String>();
+	      
+	       public void configure(JobConf job)
+	       {
+	              //To load the Delivery Codes and Messages into a hash map
+	              loadCousubCodes();
+	             
+	       }
+	      
+	       
 		String facesKey = new String();
 		String facesInfo = new String(); 
 		
@@ -84,21 +101,47 @@ public class Geocoder {
 						RZips += address.getZipr();				
 				}
 				
-				String combinedInfo = 
-									facesInfo.replace(facesKey, "") + "\t" +
+				if(facesInfo.trim().length()>0){
+					FaceAttributes face=FaceAttributes.parse(facesInfo);
+					String combinedInfo = 
+							face.getStateFips() + " | " +
+									cousubCodes.get(face.getCousub().trim()) + " | " +
 									streetName + " | " + 
 									LFrom_LTo.toString() + " | " + 
 									RFrom_RTo.toString() + " | " + 
 									LZips.toString() + " | " + 
 									RZips.toString();
-			
-				if(facesInfo.trim().length()>0){
+
+
 					output.collect(key, new Text(combinedInfo));
 				}
 				
 			}
 			
 		}
+		 private void loadCousubCodes()
+	       {
+	    	   String strRead;
+	    	   try {
+	    		   //read file from Distributed Cache
+	    		   String str=new String("hdfs://127.0.0.1:9000/cities/cities.txt");
+                 FileSystem fs = FileSystem.get(URI.create(str),new Configuration());
+                 BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(new Path(str))));
+	    		   while ((strRead=br.readLine() ) != null)
+	    		   {
+	    			   String splitarray[] = strRead.split(",");
+	    			   //parse record and load into HahMap
+	    			   cousubCodes.put(splitarray[1].trim(), splitarray[2].trim());
+
+	    		   }
+	    	   }
+	    	   catch (FileNotFoundException e) {
+	    		   e.printStackTrace();
+	    	   }catch( IOException e ) {
+	    		   e.printStackTrace();
+	    	   }
+
+	       }
 		
 	}
 	
@@ -133,6 +176,11 @@ public class Geocoder {
 	    FileInputFormat.setInputPaths(conf, new Path(input)); 
 	  
 	    JobClient.runJob(conf); 
+	}
+
+	public void loadCousubCodes() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
