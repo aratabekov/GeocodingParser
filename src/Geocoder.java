@@ -30,14 +30,14 @@ public class Geocoder {
 			
 			if (AddrFeat.isAddrFeat(info)) {
 				AddrFeat address=AddrFeat.prase(info);
-				pair.set(address.getTFIDL(), address.getFullName());
+				pair.set(address.getTFIDL(), address.getFullName(),address.getTLID());
 				output.collect(pair, address.getAddressInfo());
 				
-				pair.set(address.getTFIDR(), address.getFullName());
+				pair.set(address.getTFIDR(), address.getFullName(),address.getTLID());
 				output.collect(pair, address.getAddressInfo());
 			} else {
 				FaceAttributes face=FaceAttributes.parse(info);
-				pair.set(face.getTFID(), "*"); //That way reducer will always receive info from FACES first
+				pair.set(face.getTFID(), "*",""); //That way reducer will always receive info from FACES first
 				output.collect(pair, face.getFaceInfo());
 			}
 			
@@ -61,14 +61,14 @@ public class Geocoder {
 	       
 		String facesKey = new String();
 		String facesInfo = new String(); 
-		
+		String TLid = "";
 		/**
 		 * FACES info will always be first, then ADDRESS info
 		 */
 		@Override
 		public void reduce(PairOfStrings key, Iterator<Text> values,
 				OutputCollector<PairOfStrings, Text> output, Reporter reporter) throws IOException {
-			
+			//System.out.println("doing reduce");
 			if (key.getRightElement().equals("*")) { //first time reducer is called (FACES info)
 				facesKey = key.getLeftElement();
 				facesInfo = values.next().toString(); // only one FACES info 
@@ -79,13 +79,18 @@ public class Geocoder {
 				String LZips = new String();
 				String RZips = new String();
 				String streetName = "";
-				String TLid = "";
+				;
 				
 				while (values.hasNext()) {
 					String info = values.next().toString();
 					
 					AddrFeat address =  AddrFeat.prase(info);
 					streetName = address.getFullName();
+					
+					/*if(TLid.length()>0 && !address.getTLID().equals(TLid)){
+						System.out.println("new tlid here "+address.getTLID()+" "+address.getFullName());
+					}*/
+					
 					TLid = address.getTLID();
 					
 					if (address.getLfromhn().trim().length() > 0)
