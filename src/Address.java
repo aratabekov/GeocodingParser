@@ -28,26 +28,27 @@ public class Address {
 		
 		// Split the line for every tab
 		String[] inputLine = addressInfo.split("\t");
+		String[] values=inputLine[1].split("|");
 		
 		//We now have a TFIDL/TFIDR or a tfid
 		try {
-			if (inputLine.length > 2) {		// more than 3 tabs so TFIDL/TFIDR
+			if (values.length > 2) {		// more than 3 tabs so TFIDL/TFIDR
 				this.TLID 		= inputLine[0];
-				this.TFIDL 		= inputLine[1];
-				this.TFIDR 		= inputLine[2];
-				this.fullName 	= inputLine[3];
-				this.lfromhn 	= inputLine[4];
-				this.ltohn		= inputLine[5];
-				this.rfromhn	= inputLine[6];
-				this.rtohn		= inputLine[7];
-				this.zipl		= inputLine[8];
-				this.zipr		= inputLine[9];
+				this.TFIDL 		= values[0];
+				this.TFIDR 		= values[1];
+				this.fullName 	= values[2];
+				this.lfromhn 	= values[3];
+				this.ltohn		= values[4];
+				this.rfromhn	= values[5];
+				this.rtohn		= values[6];
+				this.zipl		= values[7];
+				this.zipr		= values[8];
 				this.isAddrFeat	= true;
 				
 			} else {						// less than 3 tabs so tfid
 				this.tfid		= inputLine[0];
-				this.statefips	= inputLine[1];
-				this.cousub		= inputLine[2];
+				this.statefips	= values[0];
+				this.cousub		= values[1];
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

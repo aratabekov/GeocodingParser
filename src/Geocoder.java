@@ -12,83 +12,122 @@ public class Geocoder {
 	}
 	
 	public static class GeocoderMapper extends MapReduceBase implements 
-		Mapper<Text, Text, Text, Text> {
+		Mapper<LongWritable, Text, PairOfStrings, Text> {
 	
+		private PairOfStrings pair = new PairOfStrings();
+		
 		@Override
-		public void map(Text key, Text value,
-				OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
+		public void map(LongWritable key, Text value,
+				OutputCollector<PairOfStrings, Text> output, Reporter reporter) throws IOException {
 			
 			Address address = new Address(value.toString());
 			
 			if (address.isAddrFeat()) {
-				output.collect(new Text(address.getTFIDL()), address.getAddressInfo());
-				output.collect(new Text(address.getTFIDR()), address.getAddressInfo());
+				pair.set(address.getTFIDL(), address.getFullName());
+				output.collect(pair, address.getAddressInfo());
+				
+				pair.set(address.getTFIDR(), address.getFullName());
+				output.collect(pair, address.getAddressInfo());
 			} else {
-				output.collect(new Text(address.getTfid()), address.getAddressInfo());
+				pair.set(address.getTfid(), "*"); //That way reducer will always receive info from FACES first
+				output.collect(pair, address.getAddressInfo());
 			}
 			
 		}
 		
 	}
 	
-	public static class Reduce extends MapReduceBase implements
-		Reducer<Text, Text, Text, Text> {
+	public static class GeocoderReducer extends MapReduceBase implements
+		Reducer<PairOfStrings, Text, PairOfStrings, Text> {
+
+		String facesKey = new String();
+		String facesInfo = new String(); 
 		
+		/**
+		 * FACES info will always be first, then ADDRESS info
+		 */
 		@Override
-		public void reduce(Text key, Iterator<Text> values,
-				OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
+		public void reduce(PairOfStrings key, Iterator<Text> values,
+				OutputCollector<PairOfStrings, Text> output, Reporter reporter) throws IOException {
+			
+			if (key.getRightElement() == "*") { //first time reducer is called (FACES info)
+				facesKey = key.getLeftElement();
+				facesInfo = values.next().toString(); // only one FACES info 
+			} else
+			{
+				ArrayList<String> LFrom_LTo = new ArrayList<String>();
+				ArrayList<String> RFrom_RTo = new ArrayList<String>();
+				String LZips = new String();
+				String RZips = new String();
+				String streetName = "";
+				String TLid = "";
+				
+				while (values.hasNext()) {
+					String info = values.next().toString();
+					
+					Address address = new Address(info);
+					streetName = address.getFullName();
+					TLid = address.getTLID();
+					
+					if (address.getLfromhn().trim().length() > 0)
+						LFrom_LTo.add(address.getLfromhn()+"-"+address.getLtohn());
+					
+					if (address.getRfromhn().trim().length() > 0)
+						RFrom_RTo.add(address.getRfromhn()+"-"+address.getRtohn());
+						
+					if (address.getZipl().trim().length() > 0)
+						LZips += address.getZipl();
+					
+					if (address.getZipr().trim().length() > 0)
+						RZips += address.getZipr();				
+				}
+				
+				String combinedInfo = facesKey + "\t" + 
+									facesInfo + "\t" +
+									streetName + "\t" + 
+									LFrom_LTo.toString() + "\t" + 
+									RFrom_RTo.toString() + "\t" + 
+									LZips.toString() + "\t" + 
+									RZips.toString();
+			
+				output.collect(key, new Text(combinedInfo));
+			}
 			
 		}
 		
 	}
 	
-	public static JobConf setupJob() throws Exception {
-		JobConf conf = new JobConf(Geocoder.class);
+	protected static class CustomPartitioner extends MapReduceBase implements Partitioner<PairOfStrings, Text> {
 		
-		conf.setJobName("Geocoder");
-		conf.setNumReduceTasks(2);
-		
-		conf.setOutputKeyClass(Text.class);
-		conf.setOutputValueClass(Text.class);
-		
-		conf.setMapperClass(GeocoderMapper.class);
-		conf.setReducerClass(Reduce.class);
-		
-		conf.setInputFormat(TextInputFormat.class);
-		conf.setOutputFormat(TextOutputFormat.class);
-		
-		return conf;		
+		public int getPartition(PairOfStrings key, Text value, int numReduceTasks) {
+			return (key.getLeftElement().hashCode() & Integer.MAX_VALUE) % numReduceTasks;
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
 		
-		int numIteration = 0;
-		long termination = 1;
+		String input = "hdfs://127.0.0.1:9000/in";
+		String output = "hdfs://127.0.0.1:9000/out";
+		
+		JobConf conf = new JobConf(Geocoder.class); 
+	    conf.setJobName("Geocoder"); 
+	    conf.setNumReduceTasks(2);
+	    
+	    conf.setOutputKeyClass(PairOfStrings.class); 
+	    conf.setOutputValueClass(Text.class); 
+	  
+	    conf.setMapperClass(GeocoderMapper.class); 
+	    conf.setReducerClass(GeocoderReducer.class); 
+	    conf.setPartitionerClass(CustomPartitioner.class);
+	  
+	    conf.setInputFormat(TextInputFormat.class); 
+	    conf.setOutputFormat(TextOutputFormat.class); 
+	  
 
-		while (termination > 0) {
-			JobConf conf = setupJob();
-
-			String input = "", output = "";
-
-			if (numIteration == 0)
-				input = "hdfs://127.0.0.1:9000/in";
-			else
-				input = "hdfs://127.0.0.1:9000/out" + numIteration;
-
-			output = "hdfs://127.0.0.1:9000/out" + (numIteration + 1);
-
-			FileInputFormat.setInputPaths(conf,  input);
-			FileOutputFormat.setOutputPath(conf, new Path(output));
-
-			RunningJob job = JobClient.runJob(conf);
-			
-			Counters jobCntrs = job.getCounters();
-			termination = jobCntrs.findCounter(
-					MoreIterations.numberOfIterations).getValue();
-			numIteration++;
-
-		}
-
+	    FileOutputFormat.setOutputPath(conf, new Path(output)); 
+	    FileInputFormat.setInputPaths(conf, new Path(input)); 
+	  
+	    JobClient.runJob(conf); 
 	}
 
 }
