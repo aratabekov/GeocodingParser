@@ -40,15 +40,11 @@ public class Geocoder {
 				FaceAttributes face=FaceAttributes.parse(info);
 				pair.set(face.getTFID() ,"*"); //That way reducer will always receive info from FACES first
 				output.collect(pair, face.getFaceInfo());
-			}
-			
-		}
-		
-	}
-	
+			}	
+		}		
+	}	
 	public static class GeocoderReducer extends MapReduceBase implements
 		Reducer<PairOfStrings, Text, PairOfStrings, Text> {
-
 		
 		  private static Map<String,String> cousubCodes= new HashMap<String,String>();
 	      
@@ -58,8 +54,7 @@ public class Geocoder {
 	              loadCousubCodes();
 	             
 	       }
-	      
-	       
+	      	       
 		String facesKey = new String();
 		String facesInfo = new String(); 
 		String TLid = "";
@@ -80,8 +75,7 @@ public class Geocoder {
 				String LZips = new String();
 				String RZips = new String();
 				String streetName = "";
-				
-				
+								
 				while (values.hasNext()) {
 					String info = values.next().toString();
 					
@@ -101,21 +95,28 @@ public class Geocoder {
 						System.out.println("new tlid here "+address.getTLID()+" "+address.getFullName());
 					}*/
 					
-					TLid = address.getTLID();
-					
+					TLid = address.getTLID();					
 					if (address.getLfromhn().trim().length() > 0)
-						LFrom_LTo.add(address.getLfromhn()+"-"+address.getLtohn());
-					
+					{
+						if(!LFrom_LTo.contains(address.getLfromhn()+"-"+address.getLtohn()))
+							LFrom_LTo.add(address.getLfromhn()+"-"+address.getLtohn());
+					}
 					if (address.getRfromhn().trim().length() > 0)
-						RFrom_RTo.add(address.getRfromhn()+"-"+address.getRtohn());
-						
+					{
+						if(!RFrom_RTo.contains(address.getRfromhn()+"-"+address.getRtohn()))
+							RFrom_RTo.add(address.getRfromhn()+"-"+address.getRtohn());
+					}
 					if (address.getZipl().trim().length() > 0)
-						LZips += address.getZipl();
-					
+					{
+						if(!LZips.contains(address.getZipl()))
+							LZips += ","+address.getZipl();
+					}
 					if (address.getZipr().trim().length() > 0)
-						RZips += address.getZipr();				
-				}
-				
+					{
+						if(!RZips.contains(address.getZipr()))
+							RZips += ","+address.getZipr();		
+					}
+				}				
 				if(facesInfo.trim().length()>0){
 					FaceAttributes face=FaceAttributes.parse(facesInfo);
 					String combinedInfo = face.getTFID()+" | "+
@@ -126,15 +127,10 @@ public class Geocoder {
 									RFrom_RTo.toString() + " | " + 
 									LZips.toString() + " | " + 
 									RZips.toString();
-
-
 					output.collect(key, new Text(combinedInfo));
-				}
-				
-			}
-			
-		}
-		
+				}				
+			}			
+		}		
 		 private void loadCousubCodes()
 	       {
 	    	   String strRead;
@@ -157,9 +153,7 @@ public class Geocoder {
 	    		   e.printStackTrace();
 	    	   }
 
-	       }
-	       
-		
+	       }	       		
 	}
 	
 	protected static class CustomPartitioner extends MapReduceBase implements Partitioner<PairOfStrings, Text> {
