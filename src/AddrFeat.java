@@ -1,8 +1,7 @@
 import org.apache.hadoop.io.Text;
 
-public class Address {
-	
-	//specific to addrfeat
+
+public class AddrFeat {
 	private String 	TLID;		
 	private String 	TFIDL;
 	private String 	TFIDR;
@@ -13,49 +12,54 @@ public class Address {
 	private String 	rtohn;
 	private String	zipl;
 	private String	zipr;
-	private boolean isAddrFeat	= false;
 	
-	//specific to faces
-	private String 	tfid;
-	private String 	statefips;
-	private String	cousub;
 	
-	public Address() {
-		
+	
+	
+	private AddrFeat(String tlid, String tfidl,String tfidr, String fullname, String lfromhn,String ltohn,String rfromhn, String rtohn,String zipl, String zipr) {
+		this.TLID=tlid;
+		this.TFIDL=tfidl;
+		this.TFIDR=tfidr;
+		this.fullName=fullname;
+		this.lfromhn=lfromhn;
+		this.ltohn=ltohn;
+		this.rfromhn=rfromhn;
+		this.rtohn=rtohn;
+		this.zipl=zipl;
+		this.zipr=zipr;
 	}
 	
-	public Address(String addressInfo) {
-		
-		// Split the line for every tab
+	public static AddrFeat prase(String addressInfo){
+		if(isAddrFeat(addressInfo)){
+			String[] inputLine = addressInfo.split("\t");
+			String[] values=inputLine[1].split("\\|");
+			
+			String TLID 		= inputLine[0].trim();
+			String TFIDL 		= values[0].trim();
+			String TFIDR 		= values[1].trim();
+			String fullName 	= values[2];
+			String lfromhn 	= values[3];
+			String ltohn		= values[4];
+			String rfromhn	= values[5];
+			String rtohn		= values[6];
+			String zipl		= values[7];
+			String zipr		= values[8];
+			
+			return new AddrFeat(TLID,TFIDL,TFIDR,fullName,lfromhn,ltohn,rfromhn,rtohn,zipl,zipr);
+		}
+			
+		return null;
+	}
+	public static boolean isAddrFeat(String addressInfo){
 		String[] inputLine = addressInfo.split("\t");
-		String[] values=inputLine[1].split("\\|");
-		
-		//We now have a TFIDL/TFIDR or a tfid
-		try {
-			if (values.length > 2) {		// more than 3 tabs so TFIDL/TFIDR
-				this.TLID 		= inputLine[0].trim();
-				this.TFIDL 		= values[0].trim();
-				this.TFIDR 		= values[1].trim();
-				this.fullName 	= values[2];
-				this.lfromhn 	= values[3];
-				this.ltohn		= values[4];
-				this.rfromhn	= values[5];
-				this.rtohn		= values[6];
-				this.zipl		= values[7];
-				this.zipr		= values[8];
-				this.isAddrFeat	= true;
-				
-			} else {						// less than 3 tabs so tfid
-				this.tfid		= inputLine[0].trim();
-				this.statefips	= values[0];
-				this.cousub		= values[1];
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}	
-		
+		String[] values=inputLine[1].split("\\|");		
+		if (values.length > 2) 
+			return true;
+		else
+			return false;
 	}
+	
+	
 
 	public String getTLID() {
 		return TLID;
@@ -82,7 +86,7 @@ public class Address {
 	}
 
 	public String getFullName() {
-		return fullName;
+		return fullName.trim();
 	}
 
 	public void setFullName(String fullName) {
@@ -137,38 +141,10 @@ public class Address {
 		this.zipr = zipr;
 	}
 
-	public String getTfid() {
-		return tfid;
-	}
-
-	public void setTfid(String tfid) {
-		this.tfid = tfid;
-	}
-
-	public String getStatefips() {
-		return statefips;
-	}
-
-	public void setStatefips(String statefips) {
-		this.statefips = statefips;
-	}
-
-	public String getCousub() {
-		return cousub;
-	}
-
-	public void setCousub(String cousub) {
-		this.cousub = cousub;
-	}
-
-	public boolean isAddrFeat() {
-		return isAddrFeat;
-	}
-
 	public Text getAddressInfo() {
 		StringBuffer s = new StringBuffer();
 		try {
-			if (isAddrFeat) {
+			
 				s.append(this.TLID).append("\t");
 				s.append(this.TFIDL).append("|");
 				s.append(this.TFIDR).append("|");
@@ -179,11 +155,7 @@ public class Address {
 				s.append(this.rtohn).append("|");
 				s.append(this.zipl).append("|");
 				s.append(this.zipr);
-			} else {
-				s.append(this.tfid).append("\t");
-				s.append(this.statefips).append("|");
-				s.append(this.cousub);
-			}
+			
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -192,6 +164,5 @@ public class Address {
 		return new Text(s.toString());
 	}
 			
-	
 
 }

@@ -20,17 +20,19 @@ public class Geocoder {
 		public void map(LongWritable key, Text value,
 				OutputCollector<PairOfStrings, Text> output, Reporter reporter) throws IOException {
 			
-			Address address = new Address(value.toString());
+			String info =value.toString();
 			
-			if (address.isAddrFeat()) {
+			if (AddrFeat.isAddrFeat(info)) {
+				AddrFeat address=AddrFeat.prase(info);
 				pair.set(address.getTFIDL(), address.getFullName());
 				output.collect(pair, address.getAddressInfo());
 				
 				pair.set(address.getTFIDR(), address.getFullName());
 				output.collect(pair, address.getAddressInfo());
 			} else {
-				pair.set(address.getTfid(), "*"); //That way reducer will always receive info from FACES first
-				output.collect(pair, address.getAddressInfo());
+				FaceAttributes face=FaceAttributes.parse(info);
+				pair.set(face.getTFID(), "*"); //That way reducer will always receive info from FACES first
+				output.collect(pair, face.getFaceInfo());
 			}
 			
 		}
@@ -65,7 +67,7 @@ public class Geocoder {
 				while (values.hasNext()) {
 					String info = values.next().toString();
 					
-					Address address = new Address(info);
+					AddrFeat address =  AddrFeat.prase(info);
 					streetName = address.getFullName();
 					TLid = address.getTLID();
 					
@@ -82,15 +84,18 @@ public class Geocoder {
 						RZips += address.getZipr();				
 				}
 				
-				String combinedInfo = facesKey + "\t" + 
-									facesInfo + "\t" +
-									streetName + "\t" + 
-									LFrom_LTo.toString() + "\t" + 
-									RFrom_RTo.toString() + "\t" + 
-									LZips.toString() + "\t" + 
+				String combinedInfo = 
+									facesInfo.replace(facesKey, "") + "\t" +
+									streetName + " | " + 
+									LFrom_LTo.toString() + " | " + 
+									RFrom_RTo.toString() + " | " + 
+									LZips.toString() + " | " + 
 									RZips.toString();
 			
-				output.collect(key, new Text(combinedInfo));
+				if(facesInfo.trim().length()>0){
+					output.collect(key, new Text(combinedInfo));
+				}
+				
 			}
 			
 		}

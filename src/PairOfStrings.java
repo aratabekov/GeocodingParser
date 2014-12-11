@@ -145,7 +145,9 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	 * @return human-readable String representation of this pair
 	 */
 	public String toString() {
-		return "(" + leftElement + ", " + rightElement + ")";
+		//return "(" + leftElement + ", " + rightElement + ")";
+		return "(" + leftElement+ ")";
+		
 	}
 
 	/**
