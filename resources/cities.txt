@@ -1,0 +1,586 @@
+13, 90864, Dalton
+13, 90714, Colbert
+13, 91698, Lavonia
+13, 91338, Gracewood
+13, 91212, Fort Benning
+13, 91998, Midway
+13, 91560, Irwinville
+13, 91428, Hartwell
+13, 92292, Orchard Hill
+13, 92358, Philema
+13, 92103, Mountain City
+13, 90162, Auburn
+13, 90591, Cedar Crossing
+13, 91170, Finleyson
+13, 91458, Hiawassee
+13, 91962, Maysville
+13, 93282, Watkinsville
+13, 91098, Eudora
+13, 90762, Commerce
+13, 92880, Sugar Valley-Resaca
+13, 91926, Marietta
+13, 92671, Salem
+13, 92934, Sylvania
+13, 90738, Collins
+13, 90594, Cedar Grove
+13, 90180, Axson
+13, 91614, Jesup
+13, 92214, North Rockdale
+13, 92778, Smithville
+13, 91164, Fayetteville
+13, 92664, Sale City
+13, 90752, Columbus North
+13, 92484, Rentz
+13, 90486, Byron
+13, 90204, Ball Ground
+13, 91134, Fairmount
+13, 90234, Barwick-Pavo
+13, 93120, Twin City
+13, 90708, Cochran
+13, 91842, Lumber City
+13, 91242, Fort Valley
+13, 91386, Guyton-Springfield
+13, 90072, Alma
+13, 92700, Sasser
+13, 90096, Andersonville
+13, 91110, Evans
+13, 92646, St. George
+13, 90684, Clayton
+13, 91194, Folkston
+13, 92796, Social Circle
+13, 90660, Chula
+13, 91416, Harrison
+13, 90042, Adrian
+13, 92748, Shawnee
+13, 92490, Reynolds
+13, 92754, Shellman
+13, 90192, Bainbridge
+13, 91008, East Echols
+13, 93222, Vinings
+13, 90678, Claxton
+13, 91206, Forsyth
+13, 91656, Kingston
+13, 92640, Rutledge
+13, 92346, Pembroke
+13, 91830, Ludville
+13, 91608, Jersey
+13, 90306, Blue Ridge
+13, 92496, Rhine
+13, 91128, Fairburn-Union City
+13, 92112, Mount Zion
+13, 90498, Cairo
+13, 91620, Jonesboro
+13, 92286, Omega
+13, 92724, Senoia
+13, 92124, Nahunta
+13, 90576, Casey Springs
+13, 92592, Roopville
+13, 92610, Round Oak
+13, 93408, Woodbine
+13, 90282, Blackshear
+13, 90384, Bridgeboro
+13, 90284, Blacks Mill
+13, 91200, Forest Park-Morrow
+13, 90510, Calvary-Reno
+13, 90156, Attapulgus
+13, 91290, Gillis Springs
+13, 90054, Alapaha
+13, 92964, Tarrytown
+13, 90120, Arlington
+13, 91446, Helen
+13, 92393, Pooler-Bloomingdale
+13, 90402, Broad River
+13, 90756, Comer
+13, 92760, Shiloh
+13, 90702, Climax
+13, 92634, Rutland
+13, 90273, Big Satilla Creek
+13, 91590, Jasper
+13, 90630, Chauncey
+13, 92015, Milledgeville
+13, 92304, Panhandle
+13, 91344, Grantville
+13, 91140, Fair Oaks
+13, 93324, West Green
+13, 91260, Gainesville
+13, 90690, Clermont
+13, 92676, Sandersville
+13, 92803, Southeast Banks
+13, 91224, Fort Gordon
+13, 91692, Lathemtown
+13, 92274, Oglethorpe
+13, 92862, Stockbridge
+13, 93378, Willacoochee
+13, 93234, Waleska
+13, 92622, Royston
+13, 91398, Hamilton
+13, 92910, Suwanee-Duluth
+13, 90036, Adrian
+13, 90942, Digbey
+13, 90150, Atlanta-Decatur
+13, 92652, St. Marys
+13, 92892, Summerville
+13, 91836, Lula
+13, 91986, Metter
+13, 92826, Sparta
+13, 92104, Mount Pleasant
+13, 92070, Moreland
+13, 92742, Sharon
+13, 93024, Three Sisters Mounta
+13, 90974, Douglasville-Lithia
+13, 92946, Talbotton
+13, 92215, North Twiggs
+13, 90414, Bronwood
+13, 91854, Luthersville
+13, 90378, Brewton
+13, 92902, Sunset Village
+13, 92268, Odum
+13, 91374, Greshamville
+13, 91896, McRae-Helena
+13, 90066, Allentown
+13, 93036, Tifton
+13, 90996, East Dougherty
+13, 90822, Culloden-Bolingbroke
+13, 90114, Aragon
+13, 92412, Poulan
+13, 93396, Winston
+13, 90426, Brooklet
+13, 93275, Washington
+13, 92502, Riceboro
+13, 91010, East Lanier
+13, 93198, Vidette
+13, 92574, Rock Spring
+13, 92154, Newnan
+13, 91548, Ila
+13, 90366, Branchville
+13, 90474, Butler
+13, 90540, Canton
+13, 92784, Smyrna
+13, 91248, Franklin
+13, 90438, Broxton
+13, 90246, Bellview
+13, 92190, Norris
+13, 91236, Fort Stewart
+13, 92832, Spence
+13, 90030, Adel-Sparks
+13, 92148, Newington
+13, 90222, Barney
+13, 90948, Dixie
+13, 92790, Snellville-Grayson
+13, 91440, Hazlehurst
+13, 91213, Fort Benning
+13, 91284, Gibson
+13, 92400, Portal
+13, 91740, Lilburn
+13, 92613, Rover
+13, 93138, Ty Ty
+13, 90090, Americus
+13, 92982, Tennille
+13, 91056, Elko
+13, 93096, Tucker
+13, 93264, Warthen
+13, 90198, Baldwin
+13, 92076, Morgan
+13, 92736, Shannon
+13, 93054, Toccoa
+13, 91278, Georgetown South
+13, 90570, Cartersville
+13, 90954, Dixie Union
+13, 90582, Catoosa Springs
+13, 91002, East Dublin
+13, 93270, Warwick
+13, 92916, Swainsboro
+13, 91810, Lookout Mountain
+13, 91878, McDonough
+13, 93012, Thomasville
+13, 91668, LaFayette
+13, 93360, White-Pine Log
+13, 92556, Rock Creek
+13, 91314, Godfrey
+13, 92160, Newton
+13, 92874, Suches
+13, 93480, Zenith
+13, 91050, Elder
+13, 92514, Richmond Hill
+13, 92331, Peachtree City-Tyron
+13, 90992, East Baldwin
+13, 93018, Thomson
+13, 90936, Dexter
+13, 93474, Zebulon
+13, 91602, Jenkinsburg
+13, 91044, Elberton
+13, 90102, Appling
+13, 93066, Toomsboro
+13, 90810, Crandall-Eton
+13, 92604, Roswell-Alpharetta
+13, 92952, Talking Rock
+13, 91566, Ivylog
+13, 90258, Berlin-Ellenton
+13, 91572, Jackson
+13, 91788, Little Sand Mountain
+13, 92628, Rupert
+13, 93444, Wrens
+13, 91686, Lake Park
+13, 90732, College Park
+13, 90024, Adairsville
+13, 90600, Cedartown
+13, 92136, Naylor
+13, 91902, Madison
+13, 91116, Everett
+13, 91530, Homerville
+13, 91524, Homer
+13, 93246, Warm Springs
+13, 90450, Buchanan
+13, 91368, Greenville
+13, 90751, Columbus East
+13, 91584, Jakin
+13, 90786, Coopers
+13, 90978, Dublin
+13, 91052, Eldorado
+13, 92142, Nevils-Stilson
+13, 93252, Warner Robins
+13, 90852, Dahlonega
+13, 92172, Nicholson
+13, 90522, Camilla
+13, 91464, Higdon-Mobile
+13, 91794, Lizella
+13, 91944, Mayfield
+13, 92844, Statesboro
+13, 90318, Bogart
+13, 92280, Omaha
+13, 91476, Hillsboro
+13, 92598, Rossville-Beverly Hi
+13, 90432, Brooks
+13, 91914, Manor
+13, 91626, Junction City
+13, 90858, Dallas
+13, 90492, Cadwell
+13, 92370, Pine Mountain
+13, 90870, Damascus
+13, 92334, Pearson
+13, 92454, Rebecca
+13, 90814, Crawford
+13, 92100, Moultrie
+13, 91812, Louisville
+13, 90144, Atlanta
+13, 92206, North Gilmer
+13, 90552, Carrollton
+13, 90462, Buena Vista
+13, 91848, Lumpkin
+13, 90469, Buford-Sugar Hill
+13, 90324, Bogart
+13, 91068, Ellaville South
+13, 90846, Dacula-Rocky Creek
+13, 93402, Winterville
+13, 90048, Alamo
+13, 92718, Screven
+13, 92538, Riverdale
+13, 93462, Yorkville
+13, 92442, Ray City
+13, 91332, Gordon
+13, 91704, Lawrenceville
+13, 90546, Carnesville
+13, 93450, Wrightsville
+13, 92352, Perry
+13, 92166, Nicholls
+13, 91020, East Point
+13, 90342, Bowdon
+13, 91866, Mableton
+13, 91554, Irwinton
+13, 91968, Meansville
+13, 92448, Rayle
+13, 91038, Edison
+13, 92328, Pavo-Barwick
+13, 91758, Linton
+13, 91578, Jacksonville
+13, 93168, Valdosta
+13, 92382, Pitts
+13, 92058, Montgomery
+13, 90288, Blairsville
+13, 91728, Leslie-De Soto
+13, 91974, Meigs
+13, 90654, Chickamauga
+13, 92994, Thalmann
+13, 91500, Hoboken
+13, 92298, Palmetto
+13, 90828, Cumming
+13, 90648, Chester
+13, 93332, West Johnson
+13, 92806, South Jenkins
+13, 91800, Locust Grove
+13, 93342, West Point
+13, 92821, South Twiggs
+13, 93078, Townsend
+13, 91818, Ludowici North
+13, 91188, Flowery Branch
+13, 92139, Nelson-Tate-Marble H
+13, 90984, Dudley
+13, 92004, Milan
+13, 91932, Marshallville
+13, 92810, South Newton
+13, 92682, Sand Mountain
+13, 91860, Lyerly
+13, 91104, Euharlee-Taylorsvill
+13, 93318, West Echols
+13, 93210, Villanow
+13, 92517, Rich Mountain
+13, 93180, Vaughn
+13, 91488, Hinesville
+13, 92856, Steam Mill
+13, 90816, Crawfordville
+13, 90882, Darien
+13, 92316, Parrott
+13, 93414, Woodbury
+13, 91809, Lookout Mountain
+13, 92436, Quitman
+13, 92232, Oak Grove
+13, 91182, Flovilla
+13, 92106, Mount Vernon-Ailey
+13, 91404, Hampton
+13, 90666, Cisco
+13, 91158, Fargo
+13, 91482, Hiltonia
+13, 90348, Bowersville
+13, 92886, Summertown
+13, 90588, Cave Spring
+13, 91362, Greens Cut
+13, 92766, Siloam
+13, 90768, Concord-Molena
+13, 91434, Hawkinsville
+13, 93288, Waverly Hall
+13, 92046, Monroe
+13, 92772, Silver City
+13, 93102, Turnerville
+13, 93216, Villa Rica
+13, 91080, Emerson
+13, 92472, Register
+13, 90006, Abbeville
+13, 90168, Augusta
+13, 91650, Kingsland
+13, 92820, South Rockdale
+13, 92586, Rome
+13, 92905, Surrency-Troper
+13, 92040, Mitchell
+13, 90804, Covington-Porterdale
+13, 90504, Calhoun
+13, 92658, St. Simons
+13, 91296, Girard
+13, 91542, Ideal
+13, 93336, Weston
+13, 90216, Barnesville
+13, 90390, Brinson
+13, 90744, Colquitt
+13, 93156, Union Point
+13, 91770, Lithonia
+13, 92460, Redbud
+13, 91506, Hogansville
+13, 92580, Rocky Ford
+13, 93294, Waycross
+13, 90480, Byromville
+13, 90252, Benevolence
+13, 92198, Northeast Bleckley
+13, 90753, Columbus West
+13, 92207, North Marion
+13, 92250, Oakwood
+13, 91680, Lakeland
+13, 90528, Campton
+13, 91254, Funston
+13, 90336, Bostwick
+13, 93300, Waynesboro
+13, 92804, Southeast Grady
+13, 92424, Preston
+13, 92204, North Evans
+13, 91014, Eastman
+13, 92418, Powder Springs
+13, 91122, Faceville
+13, 93144, Unadilla
+13, 92238, Oak Park
+13, 91266, Gay
+13, 91494, Hiram
+13, 92216, Northwest Grady
+13, 90420, Brookfield
+13, 90606, Centralhatchee
+13, 93420, Woodland
+13, 91782, Little River
+13, 92430, Pulaski
+13, 91272, Georgetown North
+13, 93228, Wadley
+13, 93042, Tiger
+13, 91716, Leesburg
+13, 91032, Eatonton
+13, 93354, Whigham
+13, 92034, Mineral Bluff
+13, 92028, Milner
+13, 90372, Bremen
+13, 90840, Cuthbert
+13, 90672, Clarkesville
+13, 93240, Waresboro
+13, 91308, Glenwood
+13, 91302, Glennville
+13, 90294, Blakely
+13, 92562, Rockingham
+13, 92688, Sandy Cross
+13, 93048, Tignall
+13, 90084, Ambrose
+13, 91380, Griffin
+13, 92094, Mossy Creek
+13, 90618, Chatsworth
+13, 91392, Hahira
+13, 90930, Devereux
+13, 90134, Ashburn-Sycamore
+13, 92616, Royston
+13, 90078, Altamaha River
+13, 91452, Hephzibah
+13, 91599, Jekyll Island
+13, 93432, Woodville
+13, 91884, Macedonia
+13, 91218, Fort Gaines
+13, 91351, Gray-Macon East
+13, 90396, Bristol
+13, 90972, Douglas
+13, 93084, Trenton
+13, 92712, Savannah
+13, 91824, Ludowici South
+13, 90138, Athens
+13, 90186, Baconton
+13, 92340, Pelham
+13, 90018, Acworth-Kennesaw
+13, 91752, Lincolnton
+13, 91908, Manchester
+13, 91956, Maysville
+13, 90876, Danielsville
+13, 92130, Nashville
+13, 90567, Carters Lake
+13, 90228, Barretts
+13, 91872, McCaysville
+13, 91356, Greensboro
+13, 90780, Coolidge
+13, 92805, South Gilmer
+13, 91638, Kensington
+13, 91230, Fort Oglethorpe-Lake
+13, 93162, Uvalda
+13, 92550, Rochelle
+13, 90798, Cornelia
+13, 92082, Morganton
+13, 92526, Ringgold
+13, 91891, Macon East
+13, 93258, Warrenton
+13, 91892, Macon West
+13, 93006, Thomaston
+13, 92838, Stapleton
+13, 92868, Stone Mountain
+13, 91950, Mayhaw
+13, 93330, West Jackson
+13, 93468, Young Harris
+13, 90240, Baxley
+13, 93366, White Plains
+13, 90792, Cordele
+13, 92364, Phoenix
+13, 91176, Fitzgerald
+13, 92052, Montezuma
+13, 91086, Empress
+13, 92433, Queensland
+13, 90900, Dawson
+13, 93426, Woodstock
+13, 92202, Northeast Cobb
+13, 92322, Patterson
+13, 93306, Waynesville
+13, 92466, Reed Creek
+13, 93438, Worthville
+13, 91596, Jefferson
+13, 90126, Armuchee
+13, 92256, Ochlocknee
+13, 90696, Cleveland
+13, 91662, Kite
+13, 93071, Towalaga
+13, 90360, Boynton Ridge
+13, 90012, Abbottsford
+13, 92508, Richland
+13, 92822, Southwest Butts
+13, 91920, Mansfield
+13, 93372, Whitesburg
+13, 93192, Vidalia-Lyons
+13, 92406, Port Wentworth
+13, 92568, Rockmart
+13, 93090, Trion
+13, 90642, Chestatee
+13, 93204, Vienna
+13, 92901, Sunny Side
+13, 91644, Keysville
+13, 91934, Martin-Avalon
+13, 91674, LaGrange
+13, 90444, Brunswick
+13, 92730, Shady Dale
+13, 91383, Grovetown-Harlem
+13, 90894, Davisboro
+13, 90060, Aline
+13, 92544, Roberta
+13, 92019, Millen
+13, 92958, Tallapoosa
+13, 92478, Reidsville
+13, 92802, Soperton
+13, 93312, West Dougherty
+13, 90912, Dearing
+13, 90726, College Park
+13, 92178, Norcross
+13, 92210, North Paulding
+13, 90624, Chattanooga Valley
+13, 92010, Milford
+13, 93350, West Whitfield
+13, 90456, Buckhead
+13, 92988, Texas
+13, 90612, Chamblee-Doraville
+13, 91146, Fairplay
+13, 92022, Millhaven
+13, 91470, Hillcrest
+13, 90719, Coldwater
+13, 93186, Vesta-Enterprise
+13, 91710, Leary
+13, 91320, Good Hope
+13, 90834, Cusseta
+13, 93384, Williamson
+13, 90924, Denton
+13, 91062, Ellaville North
+13, 92976, Temple
+13, 92520, Rincon
+13, 92184, Norman Park
+13, 92220, North Whitfield
+13, 92807, South Lincoln
+13, 91518, Holt
+13, 92376, Pineview
+13, 90960, Doerun
+13, 90906, Dawsonville
+13, 91512, Holly Springs
+13, 92694, Sardis
+13, 92850, Statham
+13, 92388, Plains
+13, 90276, Bill Arp
+13, 90966, Donalsonville
+13, 90918, Deepstep
+13, 93000, The Rock-Yatesville
+13, 90774, Conyers
+13, 91980, Menlo
+13, 92940, Sylvester
+13, 91938, Maxeys
+13, 93390, Winder
+13, 90312, Bluffton
+13, 90264, Bethlehem
+13, 91092, Enigma
+13, 90174, Austell
+13, 90108, Arabi
+13, 90354, Bowman
+13, 92088, Morven
+13, 91074, Ellijay
+13, 92064, Monticello
+13, 90270, Big Creek
+13, 90557, Carsonville
+13, 92118, Murrayville
+13, 91806, Loganville
+13, 93127, Tybee Island-Wilming
+13, 91722, Lenox
+13, 92262, Ocilla
+13, 91422, Hartford
+13, 91992, Midville
+13, 90516, Camak
+13, 90330, Boston
+13, 92226, Norwood
