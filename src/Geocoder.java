@@ -30,14 +30,14 @@ public class Geocoder {
 			
 			if (AddrFeat.isAddrFeat(info)) {
 				AddrFeat address=AddrFeat.prase(info);
-				pair.set(address.getTFIDL(), address.getFullName(),address.getTLID());
+				pair.set(address.getTFIDL(), address.getTLID());
 				output.collect(pair, address.getAddressInfo());
 				
-				pair.set(address.getTFIDR(), address.getFullName(),address.getTLID());
+				pair.set(address.getTFIDR(), address.getTLID());
 				output.collect(pair, address.getAddressInfo());
 			} else {
 				FaceAttributes face=FaceAttributes.parse(info);
-				pair.set(face.getTFID(), "*",""); //That way reducer will always receive info from FACES first
+				pair.set(face.getTFID(), "*"); //That way reducer will always receive info from FACES first
 				output.collect(pair, face.getFaceInfo());
 			}
 			
@@ -79,14 +79,23 @@ public class Geocoder {
 				String LZips = new String();
 				String RZips = new String();
 				String streetName = "";
-				;
+				
 				
 				while (values.hasNext()) {
 					String info = values.next().toString();
 					
 					AddrFeat address =  AddrFeat.prase(info);
-					streetName = address.getFullName();
 					
+					//It's possible for a record with TLID,TFID combination to have different street names,
+					//it happens when a street was recently renamed, so the there's 2 exactly same records
+					//but with a different street name
+					if(streetName.length()>0 && !streetName.contains(address.getFullName())){
+						streetName+=","+address.getFullName();
+					}
+					else
+					{
+						streetName = address.getFullName();
+					}
 					/*if(TLid.length()>0 && !address.getTLID().equals(TLid)){
 						System.out.println("new tlid here "+address.getTLID()+" "+address.getFullName());
 					}*/

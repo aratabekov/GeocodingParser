@@ -20,7 +20,7 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	/**
 	 * Creates a pair.
 	 */
-	String tlid;
+	///String tlid;
 	public PairOfStrings() {}
 
 	/**
@@ -29,13 +29,11 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	 * @param left the left element
 	 * @param right the right element
 	 */
-	public PairOfStrings(String left, String right, String tlid) {
+	public PairOfStrings(String left, String right) {
 		//this.tlid=tlid;
-		set(left, right,tlid);
+		set(left, right);
 	}
-	public String getTLID(){
-		return this.tlid;
-	}
+	
 
 	/**
 	 * Deserializes the pair.
@@ -45,7 +43,7 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	public void readFields(DataInput in) throws IOException {
 		leftElement = in.readUTF();
 		rightElement = in.readUTF();
-		tlid=in.readUTF();
+		
 	}
 
 	/**
@@ -56,7 +54,7 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	public void write(DataOutput out) throws IOException {
 		out.writeUTF(leftElement);
 		out.writeUTF(rightElement);
-		out.writeUTF(tlid);
+		
 	}
 
 	/**
@@ -101,10 +99,10 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	 * @param left the left element
 	 * @param right the right element
 	 */
-	public void set(String left, String right, String tlid) {
+	public void set(String left, String right) {
 		leftElement = left;
 		rightElement = right;
-		this.tlid=tlid;
+		
 	}
 
 	/**
@@ -154,7 +152,7 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	 */
 	public String toString() {
 		//return "(" + leftElement + ", " + rightElement + ")";
-		return "(" + tlid+ ")";
+		return "(" + rightElement+ ")";
 		
 	}
 
@@ -164,7 +162,7 @@ public class PairOfStrings implements WritableComparable<PairOfStrings> {
 	 * @return clone of this object
 	 */
 	public PairOfStrings clone() {
-		return new PairOfStrings(this.leftElement, this.rightElement, this.tlid);
+		return new PairOfStrings(this.leftElement, this.rightElement);
 	}
 
 }
